@@ -858,6 +858,20 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     [self appendPartWithHeaders:mutableHeaders body:data];
 }
 
+- (void)appendPartWithFileData:(NSData *)data
+                          name:(NSString *)name
+                      mimeType:(NSString *)mimeType
+{
+    NSParameterAssert(name);
+    NSParameterAssert(mimeType);
+
+    NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
+    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\";", name] forKey:@"Content-Disposition"];
+    [mutableHeaders setValue:mimeType forKey:@"Content-Type"];
+
+    [self appendPartWithHeaders:mutableHeaders body:data];
+}
+
 - (void)appendPartWithFormData:(NSData *)data
                           name:(NSString *)name
 {

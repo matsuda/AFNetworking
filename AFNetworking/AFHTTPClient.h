@@ -563,6 +563,17 @@ extern NSTimeInterval const kAFUploadStream3GSuggestedDelay;
                       mimeType:(NSString *)mimeType;
 
 /**
+ Appends the HTTP headers `Content-Disposition: form-data; name=#{name}"` and `Content-Type: #{mimeType}`,  followed by the encoded data and the multipart form boundary.
+ 
+ @param data The data to be encoded and appended to the form data.
+ @param name The name to be associated with the specified data. This parameter must not be `nil`.
+ @param mimeType The MIME type of the specified data. (For example, the MIME type for a JPEG image is image/jpeg.) For a list of valid MIME types, see http://www.iana.org/assignments/media-types/. This parameter must not be `nil`.
+ */
+- (void)appendPartWithFileData:(NSData *)data
+                          name:(NSString *)name
+                      mimeType:(NSString *)mimeType;
+
+/**
  Appends the HTTP headers `Content-Disposition: form-data; name=#{name}"`, followed by the encoded data and the multipart form boundary.
 
  @param data The data to be encoded and appended to the form data.
